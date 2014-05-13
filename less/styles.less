@@ -1,0 +1,360 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20 квіт 2014, 11:43:06
+    Author     : w4919_000
+*/
+@bg-color: #eaf7ec;
+@bg-color: #f5efe6;
+@secondary-color: #527e7c;
+@secondary-color: #339A63;
+@secondary-font-color: #686868;
+@secondary-font-color: #aa9c84;
+@width: 1024px;
+@border-color: #d9e1d6;
+@hover-color: #51554F;
+input[type=button], input[type=submit], .btn {
+    min-width: 60px;
+    padding: 4px 4px 4px 4px;
+    background-color: @secondary-color;
+    border: none;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    line-height: 1.5;
+    transition: all 0.2s linear;
+    text-decoration: none;
+    &:hover {
+        color: #fff;
+        text-decoration: none;
+        background: @hover-color;
+    }
+}
+.cb {
+    clear: both;
+}
+.btn {
+    padding: 4px 4px 4px 4px;
+    text-align: center;
+}
+
+input[type=text] {
+    padding: 4px;
+    border: 1px solid @border-color;
+}
+body {
+    background-color: @bg-color;
+    font-family: "Open Sans";
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+a:hover {
+    text-decoration: underline;
+    color: #000;
+}
+#page {
+    width: @width;
+    padding: 20px;
+    background: none;
+    border: none;
+}
+#header {
+    color: @secondary-font-color;
+    border: none;
+    margin-bottom: 10px;
+}
+#header-left {
+    float: right;
+    text-align: right;
+    #search-form input[name=search]{
+        width: 212px;
+    }
+    #welcome #logout {
+        margin-left: 6px;
+    }
+}
+#mainmenu {
+    background: none;
+    ul li a{
+        color: #000;
+        font-weight: normal;
+        text-transform: uppercase;
+        font-size: 14px;
+        &:hover {
+            text-decoration: underline;
+            color: #000;
+            background: none;
+        }
+    }
+    ul li.active a {
+        font-weight: bold;
+        color: #000;
+        background: none;
+    }
+}
+.breadcrumbs {
+    clear: both;
+    a {
+        font-size: 12px;
+    }
+}
+article.add-project {
+    float: left;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    outline: 1px solid @border-color;
+    background-color: #fff;
+    h2 {
+        margin-top: 34px;
+        margin-bottom: -20px;
+    }
+    a {
+        
+        color: @secondary-color;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    .plus {
+        font-size: 72px;
+        color: @secondary-color;
+    }
+    &:hover {
+        cursor: pointer;
+        outline: 3px solid @border-color;
+    }
+}
+article.project {
+    margin-left: 30px;
+    outline: 1px solid @border-color;
+    float: left;
+    height: 200px;
+    width: 200px;
+    padding: 20px;
+    position: relative;
+    background-color: #fff;
+    h2{ 
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 4px;
+    }
+    &:hover {
+        outline: 3px solid @border-color;
+    }
+    .todo,.todo a, .mindmap a {
+        
+    }
+
+    .view {
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
+        
+    }
+    .status {
+        position: absolute;
+        bottom: 10px;
+        left: 20px;
+        line-height: 2;
+        color: @secondary-font-color;
+    }
+}
+.users {
+    bottom: 40px;
+    position: absolute;
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
+}
+.user {
+    background: url('../images/user.png') no-repeat left top; 
+    padding-left: 18px;
+    margin-top: 4px;
+
+}
+ul.hierarchy {
+    list-style: none;
+    padding: 0;
+    li {
+        border-left: 1px solid #aa9c84;
+        margin-left: 10px;
+        padding-top: 5px;
+        padding-left: 10px;
+        color: #aa9c84;
+    }
+    ul {
+        list-style: none;
+    }
+}
+#content {
+    padding: 0px;
+    background: none;
+}
+.wrapper {
+    background: #fff;
+}
+.padding20 {
+    padding: 20px;
+}
+.bgwhite {
+    background: #fff;
+    border: 1px solid @border-color;
+}
+.half {
+    width: 50%;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.projectinfo ul{
+    list-style-type: none;
+}
+#content .adduser input{
+    margin: 0;
+}
+#content .adduser input[name=email]{
+    margin-top: 0.2em;
+}
+.relative {
+    position: relative;
+}
+.projectinfo .users {
+    right: 20px;
+    bottom: 20px;
+}
+.projectinfo input[name='TblProject[title]'] {
+    font-size: 2em;
+}
+.projectinfo input[name^=TblProject] {
+    display: none;
+    border: none;
+    border-bottom: 1px solid @border-color;
+}
+.save {
+    display: none;
+}
+#tabs {
+    margin-bottom: 20px;
+}
+#tabs a {
+    padding: 8px;
+}
+#tabs a:hover {
+    text-decoration: none;
+}
+.active-tab {
+    background: #fff;
+    border: 1px solid @border-color;
+    
+}
+#todos {
+   
+    ul {
+        list-style-type: none;
+    }
+    h2 {
+        float: left;
+        margin-bottom: 0.5em;
+    }
+    .remaining {
+        line-height:  2.3em;
+        margin-left: 4px;
+    }
+    table {
+        border:1px solid @border-color;
+        border-collapse:collapse;
+        td {
+            border:1px solid @border-color;
+            padding: 0px;
+            
+            label {
+                display: block;
+                padding: 4px;
+                line-height: 24px;
+                margin-left: 2px;
+                padding-left: 8px;
+                border-left: 1px solid #ddd;
+                cursor: pointer;
+                &.done-true {
+                    text-decoration: line-through;
+                    color: @secondary-font-color;
+                }
+            }
+            &.checkbox {
+                width: 32px;
+                height: 32px;
+                text-align: center;
+                vertical-align: middle;
+                input[type=checkbox]{
+
+                }
+        }
+        
+        }
+
+    }
+    .addtodo input[type=text] {
+        float: left;
+        width: 90%;
+        border: 1px solid @secondary-color;
+    }
+
+}
+#navigation-wrapper {
+    
+    h2 {
+        margin-bottom: 0.5em;
+    }
+}
+#project-navigation {
+
+   
+}
+.fr {
+    float: right;
+}
+.main-column {
+    width: 70%;
+    float: left;
+}
+.side-column {
+    width: 24%;
+    float: right;
+    margin-bottom: 20px;
+    h2 {
+        margin-bottom: 0.5em;
+    }
+}
+#mindmap {
+    img {
+        max-width: 100%;
+    }
+}
+#map {
+    position: relative;
+    text-align: center;
+    #refresh-wrapper {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+        background: rgba(0, 0, 0, 0.61);
+        display: none;
+    }
+    #refresh-map {
+        position: relative;
+        top: 40%;
+        padding: 8px;
+        z-index: 101;
+        display: none;
+    }
+}

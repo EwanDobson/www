@@ -1,0 +1,5 @@
+{
+    "require": {
+        "crisu83/yii-less": "dev-master"
+    }
+}
