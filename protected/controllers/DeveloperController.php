@@ -179,7 +179,6 @@ class DeveloperController extends Controller {
     public function actionAddMindmap() {
         $mindmap = new Mindmap();
         $json = $_POST['json'];
-        
         if ($_POST['image'] && !empty($_POST['image'])) {
 
             $dataURL = $_POST['image'];
