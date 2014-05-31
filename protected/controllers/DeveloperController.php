@@ -54,6 +54,7 @@ class DeveloperController extends Controller {
         if(Yii::app()->user->usergroup == 'admin') {
 
             $model = array();
+
             foreach ($projects as $project) {
 
                 $todo = Todo::model()->findall('projectId=:projectId', array(':projectId' => $project->projectId));
