@@ -100,6 +100,7 @@ class DeveloperController extends Controller {
     }
 
     public function actionUserinfo($id) {
+
         if (isset($id)) {
             $user = User::model()->find('id=:id', array(':id' => $id));
             if ($user) {

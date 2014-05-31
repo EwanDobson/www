@@ -1,0 +1,327 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20 квіт 2014, 11:43:06
+    Author     : w4919_000
+*/
+input[type=button],
+input[type=submit],
+.btn {
+  min-width: 60px;
+  padding: 4px 4px 4px 4px;
+  background-color: #339a63;
+  border: none;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  line-height: 1.5;
+  transition: all 0.2s linear;
+  text-decoration: none;
+}
+input[type=button]:hover,
+input[type=submit]:hover,
+.btn:hover {
+  color: #fff;
+  text-decoration: none;
+  background: #51554f;
+}
+.cb {
+  clear: both;
+}
+.btn {
+  padding: 4px 4px 4px 4px;
+  text-align: center;
+}
+input[type=text] {
+  padding: 4px;
+  border: 1px solid #d9e1d6;
+}
+body {
+  background-color: #f5efe6;
+  font-family: "Open Sans";
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+a:hover {
+  text-decoration: underline;
+  color: #000;
+}
+#page {
+  width: 1024px;
+  padding: 20px;
+  background: none;
+  border: none;
+}
+#header {
+  color: #aa9c84;
+  border: none;
+  margin-bottom: 10px;
+}
+#header-left {
+  float: right;
+  text-align: right;
+}
+#header-left #search-form input[name=search] {
+  width: 212px;
+}
+#header-left #welcome #logout {
+  margin-left: 6px;
+}
+#mainmenu {
+  background: none;
+}
+#mainmenu ul li a {
+  color: #000;
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+#mainmenu ul li a:hover {
+  text-decoration: underline;
+  color: #000;
+  background: none;
+}
+#mainmenu ul li.active a {
+  font-weight: bold;
+  color: #000;
+  background: none;
+}
+.breadcrumbs {
+  clear: both;
+}
+.breadcrumbs a {
+  font-size: 12px;
+}
+article.add-project {
+  float: left;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  outline: 1px solid #d9e1d6;
+  background-color: #fff;
+}
+article.add-project h2 {
+  margin-top: 34px;
+  margin-bottom: -20px;
+}
+article.add-project a {
+  color: #339a63;
+}
+article.add-project a:hover {
+  text-decoration: none;
+}
+article.add-project .plus {
+  font-size: 72px;
+  color: #339a63;
+}
+article.add-project:hover {
+  cursor: pointer;
+  outline: 3px solid #d9e1d6;
+}
+article.project {
+  margin-left: 30px;
+  outline: 1px solid #d9e1d6;
+  float: left;
+  height: 200px;
+  width: 200px;
+  padding: 20px;
+  position: relative;
+  background-color: #fff;
+}
+article.project h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+article.project:hover {
+  outline: 3px solid #d9e1d6;
+}
+article.project .view {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+article.project .status {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  line-height: 2;
+  color: #aa9c84;
+}
+.users {
+  bottom: 40px;
+  position: absolute;
+  margin: 0;
+  list-style-type: none;
+  padding: 0;
+}
+.user {
+  background: url('../images/user.png') no-repeat left top;
+  padding-left: 18px;
+  margin-top: 4px;
+}
+ul.hierarchy {
+  list-style: none;
+  padding: 0;
+}
+ul.hierarchy li {
+  border-left: 1px solid #aa9c84;
+  margin-left: 10px;
+  padding-top: 5px;
+  padding-left: 10px;
+  color: #aa9c84;
+}
+ul.hierarchy ul {
+  list-style: none;
+}
+#content {
+  padding: 0px;
+  background: none;
+}
+.wrapper {
+  background: #fff;
+}
+.padding20 {
+  padding: 20px;
+}
+.bgwhite {
+  background: #fff;
+  border: 1px solid #d9e1d6;
+}
+.half {
+  width: 50%;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.projectinfo ul {
+  list-style-type: none;
+}
+#content .adduser input {
+  margin: 0;
+}
+#content .adduser input[name=email] {
+  margin-top: 0.2em;
+}
+.relative {
+  position: relative;
+}
+.projectinfo .users {
+  right: 20px;
+  bottom: 20px;
+}
+.projectinfo input[name='TblProject[title]'] {
+  font-size: 2em;
+}
+.projectinfo input[name^=TblProject] {
+  display: none;
+  border: none;
+  border-bottom: 1px solid #d9e1d6;
+}
+.save {
+  display: none;
+}
+#tabs {
+  margin-bottom: 20px;
+}
+#tabs a {
+  padding: 8px;
+}
+#tabs a:hover {
+  text-decoration: none;
+}
+.active-tab {
+  background: #fff;
+  border: 1px solid #d9e1d6;
+}
+#todos ul {
+  list-style-type: none;
+}
+#todos h2 {
+  float: left;
+  margin-bottom: 0.5em;
+}
+#todos .remaining {
+  line-height: 2.3em;
+  margin-left: 4px;
+}
+#todos table {
+  border: 1px solid #d9e1d6;
+  border-collapse: collapse;
+}
+#todos table td {
+  border: 1px solid #d9e1d6;
+  padding: 0px;
+}
+#todos table td label {
+  display: block;
+  padding: 4px;
+  line-height: 24px;
+  margin-left: 2px;
+  padding-left: 8px;
+  border-left: 1px solid #ddd;
+  cursor: pointer;
+}
+#todos table td label.done-true {
+  text-decoration: line-through;
+  color: #aa9c84;
+}
+#todos table td.checkbox {
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  vertical-align: middle;
+}
+#todos .addtodo input[type=text] {
+  float: left;
+  width: 90%;
+  border: 1px solid #339a63;
+}
+#navigation-wrapper h2 {
+  margin-bottom: 0.5em;
+}
+.fr {
+  float: right;
+}
+.main-column {
+  width: 70%;
+  float: left;
+}
+.side-column {
+  width: 24%;
+  float: right;
+  margin-bottom: 20px;
+}
+.side-column h2 {
+  margin-bottom: 0.5em;
+}
+#mindmap img {
+  max-width: 100%;
+}
+#map {
+  position: relative;
+  text-align: center;
+}
+#map #refresh-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.61);
+  display: none;
+}
+#map #refresh-map {
+  position: relative;
+  top: 40%;
+  padding: 8px;
+  z-index: 101;
+  display: none;
+}
