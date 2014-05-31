@@ -49,7 +49,6 @@ class DeveloperController extends Controller {
     }
 
     public function actionIndex() {
-
         $projects = tblProject::model()->findAll();
 
         if(Yii::app()->user->usergroup == 'admin') {
