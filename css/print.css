@@ -12,8 +12,7 @@
 ----------------------------------------------------------------------- */
 .test {
     text-decoration: none;
-    color: #000;
-    text-decoration: none;
+
 }
 /* print.css */
 body {line-height:1.5;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;color:#000;background:none;font-size:10pt;}
