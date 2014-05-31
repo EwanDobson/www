@@ -52,7 +52,7 @@ input[type=text] {
 /* line 48, C:\WebServers\home\tandmtracker\www\less\styles.less */
 @media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000348}}
 body {
-  background-color: #f5efe6 !important;
+  background-color: #f5efe6;
   font-family: "Open Sans";
 }
 /* line 52, C:\WebServers\home\tandmtracker\www\less\styles.less */
