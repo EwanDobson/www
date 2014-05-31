@@ -111,6 +111,7 @@ class DeveloperController extends Controller {
         } else {
             $this->render('add');
         }
+
     }
 
     public function actionAddUser() {
