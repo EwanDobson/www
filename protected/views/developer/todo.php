@@ -33,7 +33,13 @@ $this->breadcrumbs=array(
                     <input ng-change="updateTodo({{todo.taskId}},{{todo.status}})" class="task-checkbox" type="checkbox" ng-true-value="true" ng-false-value="false" value="{{todo.status}}" ng-model="todo.status" id="task-{{todo.taskId}}">
                 </td>
                 <td>
-                    <label for="task-{{todo.taskId}}" class="done-{{todo.status}}">{{todo.title}}</label>
+                    <label for="task-{{todo.taskId}}" class="done-{{todo.status}}">{{todo.title}} <span style="font-size: 10px;">({{todo.user}})</span></label>
+                </td>
+                <td>
+                    <label for="task-{{todo.taskId}}">{{todo.created}}</label>
+                </td>
+                <td>
+                    <label for="task-{{todo.taskId}}">{{todo.completed}}</label>
                 </td>
             </tr>
         </table>
@@ -56,7 +62,11 @@ function TodoCtrl($scope, $http) {
   $scope.todos = <?php echo $model ?>;
 
   $scope.addTodo = function(id) {
-    $scope.todos.push({title:$scope.todoText, status:false});
+    $scope.todos.push({
+        title:$scope.todoText,
+        created:$scope.todoCreated,
+        status:false
+    });
     $http.put("index.php?r=developer/addTask&id=" + id + "&title="+ $scope.todoText);
     $scope.todoText = '';
   };

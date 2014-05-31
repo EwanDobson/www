@@ -15,12 +15,32 @@ class UserIdentity extends CUserIdentity
 	 * against some persistent user identity storage (e.g. database).
 	 * @return boolean whether authentication succeeds.
 	 */
+    private $_id;
+
 	public function authenticate()
 	{
-		$users=array(
+        $user = User::model()->findByAttributes(array('email' => $this->username));
+
+        if ($user===null) { // No user found!
+            $this->errorCode=self::ERROR_USERNAME_INVALID;
+        }
+        else if ( ($user->password) !== crypt($this->password, $user->password) ) { // Invalid password!
+            $this->errorCode=self::ERROR_PASSWORD_INVALID;
+        }
+        else { // Okay!
+            $this->errorCode=self::ERROR_NONE;
+            // Store the role in a session:
+            $this->setState('usergroup', $user->usergroup);
+            //$this->setState('projectid', $user->projectId);
+            $this->_id = $user->id;
+            //$this->setState('email', $user->username);
+            //$this->errorCode=self::ERROR_NONE;
+        }
+        return !$this->errorCode;
+
+		/*$users=array(
 			// username => password
-			'demo'=>'demo',
-			'admin'=>'admin',
+            'whateverName'=>'whateverPassword'
 		);
 		if(!isset($users[$this->username]))
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
@@ -28,6 +48,21 @@ class UserIdentity extends CUserIdentity
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
 		else
 			$this->errorCode=self::ERROR_NONE;
-		return !$this->errorCode;
+		return !$this->errorCode;*/
 	}
+
+    public function getId()
+    {
+        return $this->_id;
+    }
+
+    public function getName()
+    {
+        return $this->username;
+    }
+
+    public function getProjetId()
+    {
+        return $this->projectId;
+    }
 }

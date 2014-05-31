@@ -7,7 +7,7 @@
  */
 class LoginForm extends CFormModel
 {
-	public $username;
+	public $email;
 	public $password;
 	public $rememberMe;
 
@@ -22,8 +22,9 @@ class LoginForm extends CFormModel
 	{
 		return array(
 			// username and password are required
-			array('username, password', 'required'),
+			array('email, password', 'required'),
 			// rememberMe needs to be a boolean
+			array('email', 'email'),
 			array('rememberMe', 'boolean'),
 			// password needs to be authenticated
 			array('password', 'authenticate'),
@@ -37,6 +38,7 @@ class LoginForm extends CFormModel
 	{
 		return array(
 			'rememberMe'=>'Remember me next time',
+            'email'     => 'Email Address'
 		);
 	}
 
@@ -46,12 +48,29 @@ class LoginForm extends CFormModel
 	 */
 	public function authenticate($attribute,$params)
 	{
-		if(!$this->hasErrors())
+		/*if(!$this->hasErrors())
 		{
-			$this->_identity=new UserIdentity($this->username,$this->password);
+			$this->_identity=new UserIdentity($this->email,$this->password);
 			if(!$this->_identity->authenticate())
 				$this->addError('password','Incorrect username or password.');
-		}
+		}*/
+        if(!$this->hasErrors())  // we only want to authenticate when no input errors
+        {
+            $identity=new UserIdentity($this->email,$this->password);
+            $identity->authenticate();
+            switch($identity->errorCode)
+            {
+                case UserIdentity::ERROR_NONE:
+                    Yii::app()->user->login($identity);
+                    break;
+                case UserIdentity::ERROR_USERNAME_INVALID:
+                    $this->addError('email','Email address is incorrect.');
+                    break;
+                default: // UserIdentity::ERROR_PASSWORD_INVALID
+                    $this->addError('password','Password is incorrect.');
+                    break;
+            }
+        }
 	}
 
 	/**
@@ -62,7 +81,7 @@ class LoginForm extends CFormModel
 	{
 		if($this->_identity===null)
 		{
-			$this->_identity=new UserIdentity($this->username,$this->password);
+			$this->_identity=new UserIdentity($this->email,$this->password);
 			$this->_identity->authenticate();
 		}
 		if($this->_identity->errorCode===UserIdentity::ERROR_NONE)

@@ -11,8 +11,29 @@ $this->breadcrumbs = array(
 );
 ?>
 <div class="main-column">
-<div id="tabs"><a datatype="projectinfo" href="index.php?r=developer/projectinfo&id=<?php echo $model->projectId; ?>" class="active-tab">Description</a><a datatype="todo" href="index.php?r=developer/todo&id=<?php echo $model->projectId; ?>">Todos</a></div>
-<div class="form projectinfo hide" id="todo">sadsad</div>
+<div id="tabs">
+    <a datatype="projectinfo" href="index.php?r=developer/projectinfo&id=<?php echo $model->projectId; ?>" class="active-tab">Description</a>
+    <a datatype="todo" href="index.php?r=developer/todo&id=<?php echo $model->projectId; ?>">Todos</a>
+    <a datatype="mindmap" href="index.php?r=developer/&id=<?php echo $model->projectId; ?>">Mindmaps</a>
+</div>
+<div class="form projectinfo hide" id="todo">
+    <ul>
+        <?php foreach($todo as $todo1) {
+            echo "<li><a href='index.php?r=developer/todo&id=" . $todo1->todoId . "'>" . $todo1->title . "</a></li>";
+        } ?>
+    </ul>
+    <a href="index.php?r=developer/addtodo">Create ToDo List</a>
+</div>
+
+<div class="form projectinfo hide" id="mindmap">
+    <ul>
+        <?php foreach($mindmap as $mindmap1) {
+            echo "<li><a href='index.php?r=developer/mindmap&id=" . $model->projectId . "'>" . $mindmap1->img . "</a></li>";
+        } ?>
+    </ul>
+    <a href="index.php?r=developer/createmindmap">Create Project Mindmap</a>
+</div>
+
 <div class="form projectinfo" id="projectinfo">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -31,53 +52,55 @@ $this->breadcrumbs = array(
                 <?php echo $form->error($model, 'title'); ?>
             </div>
             <div class="row">
-                <?php echo $form->textField($model, 'description'); ?>
+                <p><?= $model->description ?></p>
+
                 <?php echo $form->error($model, 'description'); ?>
             </div>
         
             <ul class="users">
-                <li class='user'>Maksym</li>
-                <li class="adduser"><form><input type="text" name="email" placeholder="email"/><input type="submit" value="Add"/></form></li>
+                <?php foreach($user as $user1) {
+                    echo "<li class='user'>" . $user1->email . "</li>";
+                } ?>
+
+                <li class="adduser">
+                    <a href="index.php?r=developer/adduser">Add user</a>
+                </li>
             </ul>
             
         
         <div class="clear"></div>
     </div>
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
 
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'modified'); ?>
-		<?php echo $form->textField($model,'modified'); ?>
-		<?php echo $form->error($model,'modified'); ?>
+		<?php echo $form->label($model,'modified'); ?>
+		<?php echo '<span>' . $model->modified . '</span>'; ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'status'); ?>
-		<?php echo $form->textField($model,'status'); ?>
-		<?php echo $form->error($model,'status'); ?>
+		<?php echo $form->label($model,'status'); ?>
+        <?php echo '<span>' . $model->status . '</span>'; ?>
 	</div>
 
 
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'start'); ?>
-		<?php echo $form->textField($model,'start'); ?>
-		<?php echo $form->error($model,'start'); ?>
+		<?php echo $form->label($model,'start'); ?>
+        <?php echo '<span>' . $model->start . '</span>'; ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'end'); ?>
-		<?php echo $form->textField($model,'end'); ?>
-		<?php echo $form->error($model,'end'); ?>
+		<?php echo $form->label($model,'end'); ?>
+        <?php echo '<span>' . $model->end . '</span>'; ?>
 	</div>
 
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Submit'); ?>
+		<?php //echo CHtml::submitButton('Submit'); ?>
+        <a href="index.php?r=developer/addmindmap"
 	</div>
 
 <?php $this->endWidget(); ?>

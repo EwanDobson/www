@@ -18,6 +18,86 @@ class DeveloperController extends Controller {
         $this->render('add');
     }
 
+    public function filters()
+    {
+        return array(
+            'accessControl',
+        );
+    }
+
+    public function accessRules()
+    {
+        return array(
+            array('allow',  // allow all users to perform only 'login' action
+                'actions'=>array('login'),
+                'users'=>array('*'),
+            ),
+            array('allow', // allow admin user to perform 'admin' AND 'delete' AND 'index' actions
+                'actions'=>array('index','adduser','users', 'calendar', 'userinfo', 'projectinfo', 'createmindmap', 'mindmap', 'addtodo', 'todo', 'checktask', 'addtask', 'archivetask', 'addproject', 'addmindmap', 'refreshmap', 'UserAdded'),
+                'users'=>array('@'),
+                'expression'=>'($user->usergroup === "admin")'
+            ),
+            array('allow', // allow admin user to perform 'admin' AND 'delete' AND 'index' actions
+                'actions'=>array('index', 'calendar', 'userinfo', 'projectinfo', 'mindmap', 'addtodo', 'todo', 'checktask', 'addtask', 'archivetask', 'addmindmap', 'refreshmap', 'UserAdded'),
+                'users'=>array('@'),
+                'expression'=>'($user->usergroup === "client")'
+            ),
+            array('deny',  // deny all users
+                'users'=>array('*'),
+            ),
+        );
+    }
+
+    public function actionIndex() {
+
+        $projects = tblProject::model()->findAll();
+
+        if(Yii::app()->user->usergroup == 'admin') {
+
+            $model = array();
+            foreach ($projects as $project) {
+
+                $todo = Todo::model()->findall('projectId=:projectId', array(':projectId' => $project->projectId));
+                $mindmap = Mindmap::model()->find('projectId=:projectId', array(':projectId' => $project->projectId));
+                $user = User::model()->findall();
+
+                if (!$todo) {
+                    $todo = null;
+                }
+                if (!$mindmap) {
+                    $mindmap = null;
+                }
+                $projecttest = new Project($project, $todo, $mindmap);
+                $model[] = $projecttest;
+            }
+        }
+        else {
+            //$allow_projects = tblProject::model()->find('projectId=:projectId', array(':projectId' => Yii::app()->user->projectId));
+
+            $model = array();
+            foreach ($projects as $project) {
+
+                $todo = Todo::model()->findall('projectId=:projectId', array(':projectId' => $project->projectId));
+                $mindmap = Mindmap::model()->find('projectId=:projectId', array(':projectId' => $project->projectId));
+                $user = User::model()->findall();
+
+                if (!$todo) {
+                    $todo = null;
+                }
+                if (!$mindmap) {
+                    $mindmap = null;
+                }
+                $projecttest = new Project($project, $todo, $mindmap);
+                $model[] = $projecttest;
+            }
+        }
+
+        $this->render('index', array(
+            'model' => $model,
+            'user'  => $user
+        ));
+    }
+
     public function actionUserinfo($id) {
         if (isset($id)) {
             $user = User::model()->find('id=:id', array(':id' => $id));
@@ -32,15 +112,40 @@ class DeveloperController extends Controller {
     }
 
     public function actionAddUser() {
-        if (isset($_POST['User'])) {
-            $user = new User();
-            $user->attributes = $_POST['User'];
-            $user->save();
+
+        $user = new User();
+
+        $projects = TblProject::model()->findAll();
+        $list = array();
+        foreach ($projects as $project) {
+            $list[$project['projectId']] = $project['title'];
         }
-        $model = User::model()->find('id=:id', array(':id' => 1));
-        $this->render('adduser', array('model' => $model));
+
+
+        if(isset($_POST['ajax']) && $_POST['ajax']==='user-adduser-form') {
+            echo CActiveForm::validate($user);
+            Yii::app()->end();
+        }
+        else {
+            if (isset($_POST['User'])) {
+                $user->attributes = $_POST['User'];
+                $asd = $user->validate();
+                if($asd) {
+                    $pass = crypt($user->password);
+                    $user->password = $pass;
+
+                    $user->save();
+                    $this->redirect('index.php?r=developer/useradded');
+                }
+            }
+        }
+        $this->render('adduser', array('model' => $user, 'projects' => $list));
     }
-    
+
+    public function actionUserAdded() {
+        $this->render('useradded');
+    }
+
     public function actionUsers() {
         $users = User::model()->findAll();
         $this->render('users', array('model' => $users));
@@ -53,8 +158,17 @@ class DeveloperController extends Controller {
     public function actionProjectinfo($id) {
         if (isset($id)) {
             $project = tblProject::model()->find('projectId=:projectId', array(':projectId' => $id));
+            $todo = Todo::model()->findall('projectId=:projectId', array(':projectId' => $id));
+            $mindmap = Mindmap::model()->findAll('projectId=:projectId', array(':projectId' => $id));
+            $user = User::model()->findAll('projectId=:projectId', array(':projectId' => $id));
+
             if ($project) {
-                $this->render('projectinfo', array('model' => $project));
+                $this->render('projectinfo', array(
+                    'model'     => $project,
+                    'todo'      => $todo,
+                    'mindmap'   => $mindmap,
+                    'user'      => $user
+                ));
             } else {
                 $this->render('addproject');
             }
@@ -78,25 +192,6 @@ class DeveloperController extends Controller {
         } else {
             $this->render('index');
         }
-    }
-
-    public function actionIndex() {
-        $projects = tblProject::model()->findAll();
-        $model = array();
-        foreach ($projects as $project) {
-            
-            $todo = Todo::model()->findall('projectId=:projectId', array(':projectId' => $project->projectId));
-            $mindmap = Mindmap::model()->find('projectId=:projectId', array(':projectId' => $project->projectId));
-            if (!$todo) {
-                $todo = null;
-            }
-            if (!$mindmap) {
-                $mindmap = null;
-            }
-            $projecttest = new Project($project, $todo, $mindmap);
-            $model[] = $projecttest;
-        }
-        $this->render('index', array('model' => $model));
     }
     public function actionAddtodo() {
             if (isset($_POST['Todo'])) {
@@ -138,19 +233,23 @@ class DeveloperController extends Controller {
         return $projecttest;
     }
     public function actionCheckTask($id, $status) {
+        $user = Yii::app()->user->name;
         if ($status == "false") {
             $status = "true";
+            $curr_date = date('Y-m-d H:i:s');
         } else {
             $status = "false";
+            $curr_date = "";
         }
-        $sql = "UPDATE tbl_task SET status = '" . $status . "' WHERE taskId = '" . $id . "'";
+        $sql = "UPDATE tbl_task SET status = '" . $status . "', completed = '" . $curr_date . "', user = '" . $user . "' WHERE taskId = '" . $id . "'";
         $connection = Yii::app()->db;
         $command = $connection->createCommand($sql);
         $rowCount = $command->execute();
     }
 
     public function actionAddTask($id, $title) {
-        $sql = "INSERT INTO tbl_task (title, todoId) VALUES ('".$title."', '".$id."');";
+        $curr_date = date('Y-m-d H:i:s');
+        $sql = "INSERT INTO tbl_task (title, todoId, created) VALUES ('".$title."', '".$id."', '" . $curr_date . "');";
         $connection = Yii::app()->db;
         $command = $connection->createCommand($sql);
         $rowCount = $command->execute();
@@ -163,22 +262,42 @@ class DeveloperController extends Controller {
     }
 
     public function actionAddproject() {
-        if (isset($_POST['Project'])) {
-            $project = new tblProject();
-            $project->attributes = $_POST['Project'];
-            $project->save();
-            $this->redirect("index.php?r=developer/index");
-        }
+
         $empty_project = new tblProject();
+        $project = new tblProject();
+
+        if(isset($_POST['ajax']) && $_POST['ajax']==='project-addproject-form') {
+            echo CActiveForm::validate($project);
+            Yii::app()->end();
+        }
+        else {
+            if (isset($_POST['Project'])) {
+
+                $project->attributes = $_POST['Project'];
+                $asd = $project->validate();
+                //if($asd) {
+                    $project->save();
+                    $this->redirect("index.php?r=developer/index");
+                //}
+            }
+        }
+
         $this->render('addproject', array('model' => $empty_project));
+        //$this->render('index');
     }
 
     public function actionInfo() {
         $this->render('info');
     }
+
+    public function actionCreateMindmap() {
+        $this->render('create_mindmap');
+    }
+
     public function actionAddMindmap() {
         $mindmap = new Mindmap();
         $json = $_POST['json'];
+        
         if ($_POST['image'] && !empty($_POST['image'])) {
 
             $dataURL = $_POST['image'];

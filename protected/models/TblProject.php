@@ -30,9 +30,9 @@ class TblProject extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, modified, status', 'required'),
+			array('title, status, description', 'required'),
 			array('title', 'length', 'max'=>128),
-			array('description', 'length', 'max'=>256),
+			//array('description', 'length', 'max'=>256),
 			array('status', 'length', 'max'=>64),
 			array('start, end', 'safe'),
 			// The following rule is used by search().

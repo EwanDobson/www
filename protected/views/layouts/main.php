@@ -14,8 +14,11 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/styles.css" />
-        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="<?= Yii::app()->request->baseUrl ?>/js/jquery-1.11.1.min.js"></script>
+    <!--<link rel="stylesheet" type="text/css" href="<?php /*echo Yii::app()->request->baseUrl; */?>/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="<?php /*echo Yii::app()->request->baseUrl; */?>/css/bootstrap-theme.css" />-->
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/styles.css" />
+
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
@@ -28,24 +31,34 @@
     <div id="header-left">
         <div id="search-form">
             <form action="">
-                <input type="text" placeholder="Search..." name="search"/>
+                <input type="text" placeholder="Search..." name="search" class=""/>
                 <input type="submit" value="Search"/>
             </form>
         </div>
         <div id="welcome">
-            Welcome <a href=""><?php echo Yii::app()->user->name; ?></a>!<input onclick="location.href='index.php?r=site/logout'"id="logout" type="button" value="Logout"/>
+            Welcome <a href=""><?php echo Yii::app()->user->name; ?></a>!
+            <?php if(Yii::app()->user->isGuest) {
+                $login_url = "'index.php?r=site/login'";
+                echo '<input onclick="location.href=' . $login_url .'" id="logout" type="button" value="Login"/>';
+            }
+            else {
+                $login_url = "'index.php?r=site/logout'";
+                echo '<input onclick="location.href=' . $login_url . '"id="logout" type="button" value="Logout"/>';
+            }
+            ?>
+
         </div>
     </div>
     
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Projects', 'url'=>array('/developer/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Add User', 'url'=>array('/developer/adduser')),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+                array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+                array('label'=>'Projects', 'url'=>array('/developer/index'), 'visible'=>!Yii::app()->user->isGuest),
+                array('label'=>'Add User', 'url'=>array('/developer/adduser'), 'visible' => !Yii::app()->user->isGuest && Yii::app()->user->usergroup == 'admin'),
+                array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+                //array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+                array('label'=>'Contact', 'url'=>array('/site/contact')),
 			),
 		)); ?>
 	</div><!-- mainmenu -->
@@ -62,9 +75,8 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+		<?php echo date('Y'); ?> &copy; TandM Studio<br/>
+		All Rights Reserved<br/>
 	</div><!-- footer -->
 
 </div><!-- page -->

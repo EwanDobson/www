@@ -12,47 +12,48 @@
 	// controller action is handling ajax validation correctly.
 	// See class documentation of CActiveForm for details on this,
 	// you need to use the performAjaxValidation()-method described there.
-	'enableAjaxValidation'=>false,
+	'enableAjaxValidation'=>true,
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php //echo var_dump($model);
-        echo $form->errorSummary($model); ?>
+	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'firstname'); ?>
-		<?php echo $form->textField($model,'firstname'); ?>
+		<?php echo $form->textField($model,'firstname', array('placeholder' => 'Name')); ?>
 		<?php echo $form->error($model,'firstname'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'lastname'); ?>
-		<?php echo $form->textField($model,'lastname'); ?>
+		<?php echo $form->textField($model,'lastname', array('placeholder' => 'Surname')); ?>
 		<?php echo $form->error($model,'lastname'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->textField($model,'password'); ?>
+		<?php echo $form->textField($model,'password', array('placeholder' => 'password')); ?>
 		<?php echo $form->error($model,'password'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'usergroup'); ?>
-		<?php echo $form->textField($model,'usergroup'); ?>
+        <?= $form->dropDownList($model, 'usergroup', array('client'=>'Client', 'admin' => 'Administrator')) ?>
+		<?php //echo $form->textField($model,'usergroup'); ?>
 		<?php echo $form->error($model,'usergroup'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'email'); ?>
-		<?php echo $form->textField($model,'email'); ?>
+		<?php echo $form->textField($model,'email', array('placeholder' => 'email@example.com')); ?>
 		<?php echo $form->error($model,'email'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'projectId'); ?>
-		<?php echo $form->textField($model,'projectId'); ?>
+        <?= $form->dropDownList($model, 'projectId',  $projects) ?>
+		<?php //echo $form->textField($model,'projectId', array('placeholder' => '14')); ?>
 		<?php echo $form->error($model,'projectId'); ?>
 	</div>
 

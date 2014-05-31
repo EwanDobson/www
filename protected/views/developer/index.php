@@ -8,10 +8,12 @@ $this->breadcrumbs=array(
 
 <div class="padding20">
     <h2></h2>
+    <?php if(Yii::app()->user->usergroup == "admin") { ?>
     <article class="add-project" onclick="location.href='index.php?r=developer/addproject'">
         <h2><a href="index.php?r=developer/addproject" title="Add project">Add project</a></h2>
         <span class="plus">+</span>
     </article>
+    <?php } ?>
 <?php //echo var_dump($model);
 foreach ($model as $project) {
     echo "<article class='project'>";
@@ -24,11 +26,17 @@ foreach ($model as $project) {
         }
         echo "</ul></li>";
     }
-    if ($project->mindmap->mindmapId) {
+    if ($project->mindmap) {
         echo "<li class='mindmap'><a href='index.php?r=developer/mindmap&id=" . $project->projectId . "' title='Mindmap'>Mindmap</a></li>";
     }
     echo "</ul>";
-    echo "<div><ul class='users'><li class='user'>Maksym</li></ul></div>";
+    echo "<div><ul class='users'>";
+    foreach($user as $user1) {
+        if($user1->projectId == $project->projectId) {
+            echo "<li class='user'>" . $user1->email . "</li>";
+        }
+    }
+    echo "</ul></div>";
     //echo "<div class='description'>". $project->description . "</div>";
     //echo "<div class='modified'>Last modified:" . $project->modified . "</div>";
     echo "<div class='status'>Status: " . $project->status . "</div>";

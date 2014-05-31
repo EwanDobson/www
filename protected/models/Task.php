@@ -57,6 +57,9 @@ class Task extends CActiveRecord
 			'taskId' => 'Task',
 			'todoId' => 'Todo',
 			'title' => 'Title',
+			'created' => 'Created',
+			'completed' => 'Completed',
+			'user' => 'User',
 			'status' => 'Status',
 		);
 	}
@@ -82,6 +85,8 @@ class Task extends CActiveRecord
 		$criteria->compare('taskId',$this->taskId);
 		$criteria->compare('todoId',$this->todoId);
 		$criteria->compare('title',$this->title,true);
+		$criteria->compare('created',$this->created,true);
+		$criteria->compare('completed',$this->completed,true);
 		$criteria->compare('status',$this->status,true);
 
 		return new CActiveDataProvider($this, array(
