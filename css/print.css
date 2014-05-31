@@ -10,7 +10,9 @@
    * This is a compressed file. See the sources in the 'src' directory.
 
 ----------------------------------------------------------------------- */
-
+.test {
+    color: #000;
+}
 /* print.css */
 body {line-height:1.5;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;color:#000;background:none;font-size:10pt;}
 .container {background:none;}
