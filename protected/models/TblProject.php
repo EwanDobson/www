@@ -59,10 +59,10 @@ class TblProject extends CActiveRecord
 	{
 		return array(
 			'projectId' => 'Project',
-			'start' => 'Start',
-			'end' => 'End',
-			'title' => 'Title',
-			'description' => 'Description',
+			'start' => 'Start date',
+			'end' => 'Deadline',
+			'title' => 'Project Name',
+			'description' => 'Project short description',
 			'modified' => 'Modified',
 			'status' => 'Status',
 		);
