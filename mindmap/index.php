@@ -177,10 +177,11 @@
         <script id="template-export-map" type="text/x-jquery-tmpl">
             <div id="export-map-dialog" title="Export mind map">
             <h2 class='image-description'>To download the map right-click the
-            image and select "Save Image As"</h2>
+            image and select "Save Image As" or click Export to send it to project!</h2>
             <div id="export-preview"></div>
-            <input type="button" id="exportMap" value="Export!"/>
+            
             </div>
+            
         </script>
 
     </head>
@@ -190,7 +191,7 @@
                 mind map menu</p>
         </div>
         <!-- DEBUG -->
-        <div id="debug-warning">Running in DEBUG mode.</div>
+        <div style="display:none;" id="debug-warning">Running in DEBUG mode.</div>
         <!-- /DEBUG -->
         <div id="container">
             <div id="topbar">
@@ -231,7 +232,7 @@
         <!-- set debug flag for all scripts. Will be removed in production -->
         <script type="text/javascript">
             var mindmaps = mindmaps || {};
-            mindmaps.DEBUG = true;
+            mindmaps.DEBUG = false;
         </script>
         <!-- /DEBUG -->
 

@@ -2,6 +2,9 @@
 /* @var $this ProjectController */
 /* @var $model Project */
 /* @var $form CActiveForm */
+$this->breadcrumbs = array(
+    'Add Project'
+);
 ?>
 
 <div class="form">

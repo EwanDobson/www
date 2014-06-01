@@ -29,14 +29,14 @@
 		
 	
     <div id="header-left">
-        <div id="search-form">
+        <div style="display: none;" id="search-form">
             <form action="">
                 <input type="text" placeholder="Search..." name="search" class=""/>
                 <input type="submit" value="Search"/>
             </form>
         </div>
         <div id="welcome">
-            Welcome <a href=""><?php echo Yii::app()->user->name; ?></a>!
+            Welcome <a href="index.php?r=developer/userinfo&id=<?php echo Yii::app()->user->id; ?>"><?php echo Yii::app()->user->name; ?></a>!
             <?php if(Yii::app()->user->isGuest) {
                 $login_url = "'index.php?r=site/login'";
                 echo '<input onclick="location.href=' . $login_url .'" id="logout" type="button" value="Login"/>';
@@ -56,7 +56,9 @@
                 array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                 array('label'=>'Projects', 'url'=>array('/developer/index'), 'visible'=>!Yii::app()->user->isGuest),
                 array('label'=>'Add User', 'url'=>array('/developer/adduser'), 'visible' => !Yii::app()->user->isGuest && Yii::app()->user->usergroup == 'admin'),
-                array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+                array('label' => 'Users', 'url' => array('/developer/users'), 'visible' => !Yii::app()->user->isGuest && Yii::app()->user->usergroup == 'admin'),
+                array('label' => 'Timeline', 'url' => array('/developer/timeline'), 'visible' => !Yii::app()->user->isGuest && Yii::app()->user->usergroup == 'admin'),
+        array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
                 //array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
                 array('label'=>'Contact', 'url'=>array('/site/contact')),
 			),

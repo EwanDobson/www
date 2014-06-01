@@ -2,7 +2,7 @@
 /* @var $this DeveloperController <h1><?php echo $this->id . '/' . $this->action->id; ?></h1> */
 
 $this->breadcrumbs=array(
-	'Developer',
+	
 );
 ?>
 
@@ -13,16 +13,26 @@ $this->breadcrumbs=array(
         <h2><a href="index.php?r=developer/addproject" title="Add project">Add project</a></h2>
         <span class="plus">+</span>
     </article>
+    <style>
+        .projects {
+                float: right;
+                width: 834px;
+            }
+    </style>
     <?php } ?>
+    <div class="projects">
 <?php //echo var_dump($model);
 foreach ($model as $project) {
     echo "<article class='project'>";
     echo "<h2><a href='index.php?r=developer/projectinfo&id=" . $project->projectId . "' title='" . $project->title . "'>" . $project->title . "</a></h2>";
     echo "<ul class='hierarchy'>";
     if ($project->todo) {
+        if (count($project->todo) > 2) {
+            echo "<li>Last Todos <small>Total(".  count($project->todo) .")</small><ul>";
+        } else
         echo "<li>Todos<ul>";
-        foreach ($project->todo as $todo) {
-    echo "<li class='todo'><a href='index.php?r=developer/todo&id=" . $todo->todoId . "'>" . $todo->title . "</a></li>";
+        for ($i = 0; $i < 2; $i++) { 
+    echo "<li class='todo'><a href='index.php?r=developer/todo&id=".$project->todo[$i]->todoId."'>".$project->todo[$i]->title."</a></li>";
         }
         echo "</ul></li>";
     }
@@ -45,6 +55,8 @@ foreach ($model as $project) {
     //echo $project->end . "<br>";
     echo "</article>";
 } ?>
+    
     <div class="clear"></div>
+    </div>
 </div>
 

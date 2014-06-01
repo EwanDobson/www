@@ -65,8 +65,9 @@ mindmaps.ExportMapPresenter = function(eventBus, mindmapModel, view) {
     var $img = renderer.renderAsPNG(mindmapModel.getDocument());
     var json = mindmapModel.getDocument().serialize();
     view.setImage($img);
+    $(".ui-dialog-buttonset").append('<button type ="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="exportMap"> <span class = "ui-button-text" id="export-text"> Export </span></button>');
 	$("#exportMap").click(function(){ 
-            
+            $("#export-text").text("Wait please");
             $.ajax({
         type: "POST",
         url: "/index.php?r=developer/AddMindmap",

@@ -33,7 +33,7 @@ class DeveloperController extends Controller {
                 'users'=>array('*'),
             ),
             array('allow', // allow admin user to perform 'admin' AND 'delete' AND 'index' actions
-                'actions'=>array('index','adduser','users', 'calendar', 'userinfo', 'projectinfo', 'createmindmap', 'mindmap', 'addtodo', 'todo', 'checktask', 'addtask', 'archivetask', 'addproject', 'addmindmap', 'refreshmap', 'UserAdded'),
+                'actions'=>array('index','adduser','users', 'calendar', 'userinfo', 'projectinfo', 'createmindmap', 'mindmap', 'addtodo', 'todo', 'checktask', 'addtask', 'archivetask', 'addproject', 'addmindmap', 'refreshmap', 'UserAdded', 'saveuser', 'timeline'),
                 'users'=>array('@'),
                 'expression'=>'($user->usergroup === "admin")'
             ),
@@ -47,7 +47,9 @@ class DeveloperController extends Controller {
             ),
         );
     }
+    
 
+    
     public function actionIndex() {
 
         $projects = tblProject::model()->findAll();
@@ -103,14 +105,48 @@ class DeveloperController extends Controller {
 
         if (isset($id)) {
             $user = User::model()->find('id=:id', array(':id' => $id));
+            $projects = tblProject::model()->findAll();
             if ($user) {
-                $this->render('userinfo', array('user' => $user));
+                if ($user->projectId) {
+                    $projectName = $this->getProjectName($user->projectId);
+                } else {
+                    $projectName = '';
+                }
+                
+                $this->render('userinfo', array('user' => $user, 'projectName' => $projectName, 'projects'=> $projects));
             } else {
                 $this->render('add');
             }
         } else {
             $this->render('add');
         }
+    }
+    
+    public function actionSaveuser() {
+    if (isset($_POST['User'])) {
+        $id = $_POST['User']['id'];
+        $user = User::model()->find('id=:id', array(':id' => $id));
+            $user->attributes = $_POST['User'];
+            $user->save();
+            $this->redirect('index.php?r=developer/userinfo&id='.$id);
+            }
+        
+    
+    }
+
+
+    public function actionTimeline() {
+        $projects = TblProject::model()->findAll();
+        $model = array();
+        foreach ($projects as $event) {
+            if (!$this->isPast($event['end'])) {
+                $model[] = $event;
+            }
+        }
+        $this->render("calendar", array('model'=>$model));
+    }
+    protected function isPast($time) {
+        return (strtotime($time) < time());
     }
 
     public function actionAddUser() {
@@ -151,26 +187,39 @@ class DeveloperController extends Controller {
 
     public function actionUsers() {
         $users = User::model()->findAll();
-        $this->render('users', array('model' => $users));
+        $model = array();
+        foreach ($users as $user) {
+            if ($user->projectId) {
+                $projectName = $this->getProjectName($user->projectId);
+            } else {
+                $projectName = "";
+                $user->projectId = null;
+            }
+            $model[] = new UserExt($user, $projectName);
+        }
+        $this->render('users', array('model' => $model));
     }
 
-    public function actionCalendar() {
-        $this->render('calendar');
-    }
 
     public function actionProjectinfo($id) {
         if (isset($id)) {
             $project = tblProject::model()->find('projectId=:projectId', array(':projectId' => $id));
             $todo = Todo::model()->findall('projectId=:projectId', array(':projectId' => $id));
             $mindmap = Mindmap::model()->findAll('projectId=:projectId', array(':projectId' => $id));
+            if ($mindmap) {
+                $index = count($mindmap) - 1;
+                $json = file_get_contents(dirname(__FILE__) . '/../../mindmaps/' . $mindmap[$index]->json);
+            }
             $user = User::model()->findAll('projectId=:projectId', array(':projectId' => $id));
-
+            $navigation = $this->NavigationBar($id);
             if ($project) {
                 $this->render('projectinfo', array(
                     'model'     => $project,
                     'todo'      => $todo,
                     'mindmap'   => $mindmap,
-                    'user'      => $user
+                    'user'      => $user,
+                    'json'      => $json,
+                    'navigation' => $navigation
                 ));
             } else {
                 $this->render('addproject');
@@ -201,7 +250,8 @@ class DeveloperController extends Controller {
             $todo = new Todo();
             $todo->attributes = $_POST['Todo'];
             $todo->save();
-            $this->redirect("index.php?r=developer/index");
+            $id = $todo->todoId;
+            $this->redirect("index.php?r=developer/todo&id=".$id);
         }
         $empty_todo = new Todo();
         $this->render('addtodo', array('model' => $empty_todo));
@@ -209,8 +259,9 @@ class DeveloperController extends Controller {
     public function actionTodo($id)
     {
         if (isset($id)) {
-            $navigation = $this->NavigationBar($id);
-            $todo = Todo::model()->find('projectId=:projectId', array(':projectId' => $id));
+            
+            $todo = Todo::model()->find('todoId=:todoId', array(':todoId' => $id));
+            $navigation = $this->NavigationBar($todo->projectId);
             if ($todo) {
                 $tasks = Task::model()->findall('todoId=:todoId', array(':todoId' => $todo->todoId));
                 $tasks = CJSON::encode($tasks);
@@ -340,6 +391,11 @@ class DeveloperController extends Controller {
         }
         
         
+    }
+    
+    protected function getProjectName($id) {
+        $project = tblProject::model()->find('projectId=:projectId', array(':projectId' => $id));
+        return $project->title;
     }
     // Uncomment the following methods and override them if needed
     /*

@@ -28,11 +28,11 @@ $this->breadcrumbs=array(
             </form>
         </div>
         </div>
-
+        <div class="side-column">
 <?php if ($navigation) {
       $this->renderPartial('navigation', array('model' => $navigation)); 
   } ?>
-<div class="side-column">
+
 <?php
   echo "<h2>Maps history</h2>";
   echo "<div id='history' class='bgwhite padding20'>";

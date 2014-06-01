@@ -3,9 +3,8 @@
 /* @var $this DeveloperController */
 
 $this->breadcrumbs=array(
-	'Developer'=>array('/developer'),
-	'Todos'  => array('/developer'),
-        'Todo1'
+	$navigation->title =>array('developer/projectinfo', 'id'=>$navigation->projectId),
+        $title
 );
 ?>
 
@@ -50,11 +49,13 @@ $this->breadcrumbs=array(
         </form>
     </div>
 </div>
+<div class="side-column">
 <?php
 if ($navigation) {
     $this->renderPartial('navigation', array('model' => $navigation));
 }
 ?>
+</div>
 <div class="cb">
 </div>
 <script>

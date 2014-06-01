@@ -130,8 +130,11 @@ article.add-project {
         outline: 3px solid @border-color;
     }
 }
+
+
 article.project {
     margin-left: 30px;
+    margin-bottom: 30px;
     outline: 1px solid @border-color;
     float: left;
     height: 200px;
@@ -310,7 +313,7 @@ ul.hierarchy {
 
 }
 #navigation-wrapper {
-    
+    margin-bottom: 20px;
     h2 {
         margin-bottom: 0.5em;
     }
@@ -318,6 +321,9 @@ ul.hierarchy {
 #project-navigation {
 
    
+}
+a[datatype] {
+    cursor: pointer;
 }
 .fr {
     float: right;
@@ -356,5 +362,89 @@ ul.hierarchy {
         padding: 8px;
         z-index: 101;
         display: none;
+    }
+}
+
+#popup-wrapper {
+    position: fixed;
+    background: #000;
+    opacity: 0.6;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    z-index: 90;
+    left: 0px;
+    
+}
+
+#popup {
+    width: 300px;
+    z-index: 100;
+    height: 110px;
+    background: #fff;
+    border: 1px solid  @border-color;
+    position: fixed;
+    left: 38%;
+    top: 40%;
+    .popup-head {
+        text-align: center;
+        padding: 10px;
+        h3 {
+            margin-bottom: 10px;
+            cursor: default;
+        }
+        .close {
+            float: right;
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            background: url(../images/close.png) no-repeat center center;
+            cursor: pointer;
+            z-index: 100;
+        }
+    }
+    .popup-body {
+        text-align: center;
+    }
+    form {
+        width: 228px;
+        margin: 0 auto;
+        input[type=text] {
+            float: left;
+        }
+    }
+}
+.user-list {
+    border:1px solid @border-color;
+    border-collapse:collapse;
+    th {
+        border:1px solid @border-color;
+        background: #f8f8f8;
+    }
+    td {
+        border:1px solid @border-color;
+        background: #fff;
+        padding: 4px;
+    }
+
+}
+#user-info *[name^=User]{
+    display: none;
+}
+article.project.timeline {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    height: 100px;
+    cursor: pointer;
+    .title {
+        display: block;
+        marign-top: 10px;
+        
+    }
+    .deadline {
+        font-size: 16px;
     }
 }

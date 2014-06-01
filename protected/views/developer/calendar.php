@@ -2,13 +2,18 @@
 /* @var $this DeveloperController */
 
 $this->breadcrumbs=array(
-	'Developer'=>array('/developer'),
-	'Calendar',
 );
 ?>
-<h1><?php echo $this->id . '/' . $this->action->id; ?></h1>
+<h1>Nearest events</h1>
+<?php 
 
-<p>
-	You may change the content of this page by modifying
-	the file <tt><?php echo __FILE__; ?></tt>.
-</p>
+foreach ($model as $event) {
+    ?>
+    <article class='project timeline' onclick="location.href='index.php?r=developer/projectinfo&id=<?php echo $event->projectId; ?>'">
+        <?php
+    echo "<span class='title'>".$event->title . "</span><br>";
+    echo "<span class='deadline'>Deadline: " . $event->end . "</span>";
+    echo "</article>";
+}
+?>
+

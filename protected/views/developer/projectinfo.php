@@ -7,32 +7,55 @@
 /* @var $this DeveloperController  */
 
 $this->breadcrumbs = array(
-    'Developer',
+    $model->title
 );
 ?>
 <div class="main-column">
 <div id="tabs">
-    <a datatype="projectinfo" href="index.php?r=developer/projectinfo&id=<?php echo $model->projectId; ?>" class="active-tab">Description</a>
-    <a datatype="todo" href="index.php?r=developer/todo&id=<?php echo $model->projectId; ?>">Todos</a>
-    <a datatype="mindmap" href="index.php?r=developer/&id=<?php echo $model->projectId; ?>">Mindmaps</a>
+    <a datatype="projectinfo" class="active-tab">Description</a>
+    <a datatype="todo">Todos</a>
+    <a datatype="mindmap" >Mindmaps</a>
 </div>
 <div class="form projectinfo hide" id="todo">
-    <ul>
-        <?php foreach($todo as $todo1) {
+    <ul class="todo-lists">
+        <?php foreach ($todo as $todo1) {
             echo "<li><a href='index.php?r=developer/todo&id=" . $todo1->todoId . "'>" . $todo1->title . "</a></li>";
         } ?>
     </ul>
-    <a href="index.php?r=developer/addtodo">Create ToDo List</a>
+    <input type="button" id="create-todo" value="Create New Todo"/>
 </div>
 
 <div class="form projectinfo hide" id="mindmap">
-    <ul>
-        <?php foreach($mindmap as $mindmap1) {
-            echo "<li><a href='index.php?r=developer/mindmap&id=" . $model->projectId . "'>" . $mindmap1->img . "</a></li>";
-        } ?>
-    </ul>
-    <a href="index.php?r=developer/createmindmap">Create Project Mindmap</a>
+        <h2>Mindmap</h2>
+        <?php
+        if ($mindmap) { ?>
+        <div id="map">
+            <div id="refresh-wrapper"><input type="button" id="refresh-map" value="Refresh map"/></div>
+
+            
+ <?php
+
+                if ($mindmap[count($mindmap) - 1]->img) {
+                    echo "<img id='src-map' src='mindmaps/" . $mindmap[count($mindmap) - 1]->img . "'/>";
+                }
+                ?>
+            </div>
+            <div class="fr">
+
+                <form action="mindmap/index.php" method="post" target="_blank">
+                    <input type="hidden" name="id" value="<?php echo $mindmap[count($mindmap) - 1]->projectId; ?>"/>
+                    <input type="hidden" name="json" value='<?php echo $json; ?>'/>
+                    <a target="_blank" id="full-map" style="border-bottom: 1px solid #339a63;" class="btn" href='mindmaps/<?php echo $mindmap[count($mindmap) - 1]->img; ?>'>Full size</a>
+                    <input type="submit" id="edit-map" value="<?php if ($mindmap[count($mindmap) - 1]->img) {
+                    echo "Edit map";
+                } else echo "Create map" ?>"/>
+                </form>
+            
+        </div>
+            <?php } ?>
+
 </div>
+
 
 <div class="form projectinfo" id="projectinfo">
 
@@ -100,13 +123,85 @@ $this->breadcrumbs = array(
 
 	<div class="row buttons">
 		<?php //echo CHtml::submitButton('Submit'); ?>
-        <a href="index.php?r=developer/addmindmap"
+        
 	</div>
 
 <?php $this->endWidget(); ?>
 </div>
 
 </div><!-- form -->
+</div>
+<div class="side-column">
+<?php
+    $this->renderPartial('navigation', array('model' => $navigation));
+?>
+    <?php if ($mindmap) { ?>
+<div>
+    <?php
+    echo "<h2>Maps history</h2>";
+    echo "<div id='history' class='bgwhite padding20'>";
+    foreach ($mindmap as $map) {
+        echo "<a target='_blank' href='mindmaps/" . $map->img . "'>" . $map->img . "</a><br>";
+    }
+    echo "</div>";
+    ?>
+</div>
+    <?php } ?>
+</div>
+<script>
+    $(document).ready(function(){
+$("#edit-map").click(function(){
+    $("#refresh-wrapper").fadeIn("slow");
+    $("#refresh-map").fadeIn("slow");
+    $("#refresh-map").click(function(){
+        $.ajax({
+            url: "index.php?r=developer/refreshMap",
+            type: "POST",
+            data: { id: <?php echo $mindmap[count($mindmap) - 1]->projectId; ?> },
+            success: function(data){
+                var json = JSON.parse(data);
+                if ($("#src-map").attr("src") !== "mindmaps/"+json.img) {
+                
+                $("#src-map").attr("src","mindmaps/"+json.img);
+                $("#full-map").attr("href","mindmaps/"+json.img);
+                $("#history").append("<a target='_blank' href='mindmaps/" +json.img + "'>"+json.img +"</a><br>");
+                $("input[name=json]").val(json.json);
+            }
+                $("#refresh-wrapper").fadeOut("slow");
+                $("#refresh-map").fadeOut("slow");
+                
+            }
+        });
+    });
+});
+    $("#create-todo").click(function(){
+    var html = "<div id='popup-wrapper'></div>"
+                +"<div id='popup'>"
+                    +"<div class='popup-head'>"
+                        +"<h3>Add New Todo</h3>"
+                        +"<span class='close'></span>"
+                    +"</div>"
+                    +"<div class='popup-body'>"
+                        +"<form action='/index.php?r=developer/addtodo' method='POST'>"
+                            +"<input type='hidden' name='Todo[projectId]' value='<?php echo $model->projectId ?>'/>"
+                            +"<input type='text' placeholder='Todo Title' name='Todo[title]'/>"
+                            +"<input type='submit' value='Create'/>"
+                        +"</form>"
+                    +"</div>"
+                +"</div>";
+        $("body").append(html);
+        $("#popup-wrapper").click(function(){
+            $("#popup-wrapper").remove();
+            $("#popup").remove();
+        });
+
+        $("#popup .close").click(function(){
+            $("#popup-wrapper").remove();
+            $("#popup").remove();
+        });
+    });
+});
+</script>
 <script>
 $(document).ready(function(){
            $(".edit").click(function(){

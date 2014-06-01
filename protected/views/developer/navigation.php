@@ -1,4 +1,4 @@
-<div id="navigation-wrapper" class="side-column">
+<div id="navigation-wrapper" >
     <h2>Navigation</h2>
     <nav class="bgwhite padding20" id="project-navigation">
         <a href="index.php?r=developer/projectinfo&id=<?php echo $model->projectId; ?>" class="nav-title"><?php echo $model->title; ?></a>
@@ -17,7 +17,7 @@
             <?php } ?>
             <?php if ($model->mindmap->projectId) { ?>
             <li>
-                <a href="http://tandmtracker:8080/index.php?r=developer/mindmap&id=<?php echo $model->mindmap->projectId; ?>">Mindmap</a>
+                <a href="index.php?r=developer/mindmap&id=<?php echo $model->mindmap->projectId; ?>">Mindmap</a>
             </li>
             <?php } ?>
         </ul>
