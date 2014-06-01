@@ -52,54 +52,50 @@ $this->breadcrumbs = array(
                 <?php echo $form->error($model, 'title'); ?>
             </div>
             <div class="row">
-                <p><?= $model->description ?></p>
-
+                <p style="width: 490px;"><?= $model->description ?></p>
                 <?php echo $form->error($model, 'description'); ?>
             </div>
 
         <a href="index.php?r=developer/editproject&project_id=<?= $model->projectId ?>" class="btn btn-primary">Edit project info</a>
         <span style="font-size: 12px; margin-top: 10px;">(last modified - <?= $model->modified ?>)</span>
 
-        <ul class="users">
+        <ul class="users" style="top:60px">
                 <?php foreach($user as $user1) {
-                    echo "<li class='user'>" . $user1->email . "</li>";
+                    echo "<li class='user'>" . $user1->email . " (" . $user1->usergroup . ")" . "</li>";
                 } ?>
 
             <?php if(Yii::app()->user->usergroup == 'admin'): ?>
+                <select id="select_user">
+                    <option value="0"></option>
+                    <?php foreach($allusers as $user2): ?>
+                    <option value="<?= $user2->id ?>"><?= $user2->email ?></option>
+                    <?php endforeach; ?>
+                </select>
                 <li class="adduser">
-                    <a href="index.php?r=developer/adduser">Add user</a>
+                    <button id="add_user" class="btn btn-primary">Add user</button>
                 </li>
             <?php endif; ?>
             </ul>
-            
-        
+
         <div class="clear"></div>
+
+        <div class="row" style="margin-top: 15px;">
+            <span><b>Status:</b> <?= $model->status ?></span>
+        </div>
+
+        <div class="row">
+            <span><b>Start date:</b> <?php if($model->start == "0000-00-00") echo 'date not defined';
+                else echo $model->start; ?>
+            </span>
+        </div>
+
+        <div class="row">
+            <span><b>Deadline:</b> <?php if($model->end == "0000-00-00") echo 'date not defined';
+                else echo $model->end; ?>
+            </span>
+        </div>
+
     </div>
-
-	<?php echo $form->errorSummary($model); ?>
-
-	<div class="row">
-		<?php echo $form->label($model,'status'); ?>
-        <?php echo '<span>' . $model->status . '</span>'; ?>
-	</div>
-
-
-
-	<div class="row">
-		<?php echo $form->label($model,'start'); ?>
-        <?php echo '<span>' . $model->start . '</span>'; ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'end'); ?>
-        <?php echo '<span>' . $model->end . '</span>'; ?>
-	</div>
-
-
-	<div class="row buttons">
-		<?php //echo CHtml::submitButton('Submit'); ?>
-        <a href="index.php?r=developer/addmindmap"
-	</div>
 
 <?php $this->endWidget(); ?>
 </div>
@@ -107,7 +103,23 @@ $this->breadcrumbs = array(
 </div><!-- form -->
 <script>
 $(document).ready(function(){
-           $(".edit").click(function(){
+    $('#add_user').click(function() {
+        var project_id = <?= $model->projectId ?>;
+        var user_id = $('#select_user option:selected').val();
+
+        $.ajax({
+            type: 'POST',
+            url: 'index.php?r=developer/addprojectuser',
+            data: {
+                project_id: project_id,
+                user_id: user_id
+            },
+            success: function() {
+                location.reload();
+            }
+        });
+    });
+           /*$(".edit").click(function(){
                var type = $(this).attr("datatype");
                $(this).hide();
                $(".save[datatype="+type+"]").show();
@@ -133,7 +145,7 @@ $(document).ready(function(){
                    $(selector1).show();
                    $(this).hide();
                });
-           });
+           });*/
            $("#tabs a").click(function(e){
                e.preventDefault();
                var id = $(this).attr("datatype");

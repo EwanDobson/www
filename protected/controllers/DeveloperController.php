@@ -33,7 +33,7 @@ class DeveloperController extends Controller {
                 'users'=>array('*'),
             ),
             array('allow', // allow admin user to perform 'admin' AND 'delete' AND 'index' actions
-                'actions'=>array('index','adduser','users', 'calendar', 'userinfo', 'projectinfo', 'editproject', 'saveprojectchanges', 'createmindmap', 'mindmap', 'addtodo', 'todo', 'checktask', 'addtask', 'archivetask', 'addproject', 'addmindmap', 'refreshmap', 'UserAdded'),
+                'actions'=>array('index','adduser','users', 'calendar', 'userinfo', 'projectinfo', 'editproject', 'saveprojectchanges', 'addprojectuser', 'deleteproject', 'createmindmap', 'mindmap', 'addtodo', 'todo', 'checktask', 'addtask', 'archivetask', 'addproject', 'addmindmap', 'refreshmap', 'UserAdded'),
                 'users'=>array('@'),
                 'expression'=>'($user->usergroup === "admin")'
             ),
@@ -165,13 +165,15 @@ class DeveloperController extends Controller {
             $todo = Todo::model()->findall('projectId=:projectId', array(':projectId' => $id));
             $mindmap = Mindmap::model()->findAll('projectId=:projectId', array(':projectId' => $id));
             $user = User::model()->findAll('projectId=:projectId', array(':projectId' => $id));
+            $all_users = User::model()->findAll();
 
             if ($project) {
                 $this->render('projectinfo', array(
                     'model'     => $project,
                     'todo'      => $todo,
                     'mindmap'   => $mindmap,
-                    'user'      => $user
+                    'user'      => $user,
+                    'allusers'  => $all_users
                 ));
             } else {
                 $this->render('addproject');
@@ -276,7 +278,8 @@ class DeveloperController extends Controller {
         }
         else {
             if (isset($_POST['TblProject'])) {
-
+                $curr_date = date('Y-m-d H:i:s');
+                $project->modified = $curr_date;
                 $project->attributes = $_POST['TblProject'];
                 $asd = $project->validate();
                 if($asd) {
@@ -309,6 +312,27 @@ class DeveloperController extends Controller {
         $connection = Yii::app()->db;
         $command = $connection->createCommand($sql);
         $rowCount = $command->execute();
+    }
+
+    public function actionAddprojectuser() {
+        $project_id = $_POST['project_id'];
+        $user_id = $_POST['user_id'];
+
+        $sql = "UPDATE tbl_user SET projectId = '$project_id' WHERE id = '$user_id' ;";
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand($sql);
+        $rowCount = $command->execute();
+    }
+
+    public function actionDeleteproject() {
+        $project_id = $_POST['id'];
+
+        $sql = "DELETE FROM tbl_project WHERE projectId = '$project_id' ;";
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand($sql);
+        $command->execute();
+
+        echo("index.php?r=developer/index");
     }
 
     public function actionInfo() {
