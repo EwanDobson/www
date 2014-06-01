@@ -7,8 +7,6 @@ and open the template in the editor.
     Created on : 20 квіт 2014, 11:43:06
     Author     : w4919_000
 */
-/* line 19, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000319}}
 input[type=button],
 input[type=submit],
 .btn {
@@ -23,8 +21,6 @@ input[type=submit],
   transition: all 0.2s linear;
   text-decoration: none;
 }
-/* line 30, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000330}}
 input[type=button]:hover,
 input[type=submit]:hover,
 .btn:hover {
@@ -32,112 +28,77 @@ input[type=submit]:hover,
   text-decoration: none;
   background: #51554f;
 }
-/* line 36, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000336}}
 .cb {
   clear: both;
 }
-/* line 39, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000339}}
 .btn {
   padding: 4px 4px 4px 4px;
   text-align: center;
 }
-/* line 44, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000344}}
 input[type=text] {
   padding: 4px;
   border: 1px solid #d9e1d6;
 }
-/* line 48, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000348}}
 body {
   background-color: #f5efe6;
   font-family: "Open Sans";
 }
-/* line 52, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000352}}
 a {
   text-decoration: none;
   color: #000;
 }
-/* line 56, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000356}}
 a:hover {
   text-decoration: underline;
   color: #000;
 }
-/* line 60, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000360}}
 #page {
   width: 1024px;
   padding: 20px;
   background: none;
   border: none;
 }
-/* line 66, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000366}}
 #header {
   color: #aa9c84;
   border: none;
   margin-bottom: 10px;
 }
-/* line 71, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000371}}
 #header-left {
   float: right;
   text-align: right;
 }
-/* line 74, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000374}}
 #header-left #search-form input[name=search] {
   width: 212px;
 }
-/* line 77, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000377}}
 #header-left #welcome #logout {
   margin-left: 6px;
 }
-/* line 81, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000381}}
 #mainmenu {
   background: none;
 }
-/* line 83, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000383}}
 #mainmenu ul li a {
   color: #000;
   font-weight: normal;
   text-transform: uppercase;
   font-size: 14px;
 }
-/* line 88, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000388}}
 #mainmenu ul li a:hover {
   text-decoration: underline;
   color: #000;
   background: none;
 }
-/* line 94, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\0000394}}
 #mainmenu ul li.active a {
   font-weight: bold;
   color: #000;
   background: none;
 }
-/* line 100, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003100}}
 .breadcrumbs {
   clear: both;
 }
-/* line 102, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003102}}
 .breadcrumbs a {
   font-size: 12px;
 }
-/* line 106, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003106}}
 article.add-project {
+  margin-right: 25px;
   float: left;
   width: 150px;
   height: 150px;
@@ -145,38 +106,44 @@ article.add-project {
   outline: 1px solid #d9e1d6;
   background-color: #fff;
 }
-/* line 113, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003113}}
 article.add-project h2 {
   margin-top: 34px;
   margin-bottom: -20px;
 }
-/* line 117, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003117}}
 article.add-project a {
   color: #339a63;
 }
-/* line 120, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003120}}
 article.add-project a:hover {
   text-decoration: none;
 }
-/* line 124, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003124}}
 article.add-project .plus {
   font-size: 72px;
   color: #339a63;
 }
-/* line 128, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003128}}
 article.add-project:hover {
   cursor: pointer;
   outline: 3px solid #d9e1d6;
 }
-/* line 133, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003133}}
+.b-icon {
+  width: 22%;
+  padding: 1.5%;
+  text-align: center;
+}
+.f-left {
+  float: left;
+}
+.b-content-home,
+.l-box2,
+.b-block {
+  max-width: 1170px;
+  min-width: 748px;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 article.project {
-  margin-left: 30px;
+  margin-right: 25px;
+  margin-bottom: 25px;
   outline: 1px solid #d9e1d6;
   float: left;
   height: 200px;
@@ -185,27 +152,19 @@ article.project {
   position: relative;
   background-color: #fff;
 }
-/* line 142, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003142}}
 article.project h2 {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 4px;
 }
-/* line 147, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003147}}
 article.project:hover {
   outline: 3px solid #d9e1d6;
 }
-/* line 154, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003154}}
 article.project .view {
   position: absolute;
   bottom: 10px;
   right: 20px;
 }
-/* line 160, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003160}}
 article.project .status {
   position: absolute;
   bottom: 10px;
@@ -213,8 +172,6 @@ article.project .status {
   line-height: 2;
   color: #aa9c84;
 }
-/* line 168, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003168}}
 .users {
   bottom: 40px;
   position: absolute;
@@ -222,21 +179,15 @@ article.project .status {
   list-style-type: none;
   padding: 0;
 }
-/* line 175, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003175}}
 .user {
   background: url('../images/user.png') no-repeat left top;
   padding-left: 18px;
   margin-top: 4px;
 }
-/* line 181, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003181}}
 ul.hierarchy {
   list-style: none;
   padding: 0;
 }
-/* line 184, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003184}}
 ul.hierarchy li {
   border-left: 1px solid #aa9c84;
   margin-left: 10px;
@@ -244,143 +195,91 @@ ul.hierarchy li {
   padding-left: 10px;
   color: #aa9c84;
 }
-/* line 191, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003191}}
 ul.hierarchy ul {
   list-style: none;
 }
-/* line 195, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003195}}
 #content {
   padding: 0px;
   background: none;
 }
-/* line 199, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003199}}
 .wrapper {
   background: #fff;
 }
-/* line 202, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003202}}
 .padding20 {
   padding: 20px;
 }
-/* line 205, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003205}}
 .bgwhite {
   background: #fff;
   border: 1px solid #d9e1d6;
 }
-/* line 209, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003209}}
 .half {
   width: 50%;
 }
-/* line 212, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003212}}
 .left {
   float: left;
 }
-/* line 215, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003215}}
 .right {
   float: right;
 }
-/* line 218, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003218}}
 .projectinfo ul {
   list-style-type: none;
 }
-/* line 221, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003221}}
 #content .adduser input {
   margin: 0;
 }
-/* line 224, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003224}}
 #content .adduser input[name=email] {
   margin-top: 0.2em;
 }
-/* line 227, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003227}}
 .relative {
   position: relative;
 }
-/* line 230, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003230}}
 .projectinfo .users {
   right: 20px;
   bottom: 20px;
 }
-/* line 234, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003234}}
 .projectinfo input[name='TblProject[title]'] {
   font-size: 2em;
 }
-/* line 237, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003237}}
 .projectinfo input[name^=TblProject] {
   display: none;
   border: none;
   border-bottom: 1px solid #d9e1d6;
 }
-/* line 242, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003242}}
 .save {
   display: none;
 }
-/* line 245, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003245}}
 #tabs {
   margin-bottom: 20px;
 }
-/* line 248, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003248}}
 #tabs a {
   padding: 8px;
 }
-/* line 251, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003251}}
 #tabs a:hover {
   text-decoration: none;
 }
-/* line 254, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003254}}
 .active-tab {
   background: #fff;
   border: 1px solid #d9e1d6;
 }
-/* line 261, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003261}}
 #todos ul {
   list-style-type: none;
 }
-/* line 264, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003264}}
 #todos h2 {
   float: left;
   margin-bottom: 0.5em;
 }
-/* line 268, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003268}}
 #todos .remaining {
   line-height: 2.3em;
   margin-left: 4px;
 }
-/* line 272, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003272}}
 #todos table {
   border: 1px solid #d9e1d6;
   border-collapse: collapse;
 }
-/* line 275, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003275}}
 #todos table td {
   border: 1px solid #d9e1d6;
   padding: 0px;
 }
-/* line 279, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003279}}
 #todos table td label {
   display: block;
   padding: 4px;
@@ -390,68 +289,46 @@ ul.hierarchy ul {
   border-left: 1px solid #ddd;
   cursor: pointer;
 }
-/* line 287, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003287}}
 #todos table td label.done-true {
   text-decoration: line-through;
   color: #aa9c84;
 }
-/* line 292, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003292}}
 #todos table td.checkbox {
   width: 32px;
   height: 32px;
   text-align: center;
   vertical-align: middle;
 }
-/* line 305, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003305}}
 #todos .addtodo input[type=text] {
   float: left;
   width: 90%;
   border: 1px solid #339a63;
 }
-/* line 314, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003314}}
 #navigation-wrapper h2 {
   margin-bottom: 0.5em;
 }
-/* line 322, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003322}}
 .fr {
   float: right;
 }
-/* line 325, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003325}}
 .main-column {
   width: 70%;
   float: left;
 }
-/* line 329, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003329}}
 .side-column {
   width: 24%;
   float: right;
   margin-bottom: 20px;
 }
-/* line 333, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003333}}
 .side-column h2 {
   margin-bottom: 0.5em;
 }
-/* line 338, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003338}}
 #mindmap img {
   max-width: 100%;
 }
-/* line 342, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003342}}
 #map {
   position: relative;
   text-align: center;
 }
-/* line 345, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003345}}
 #map #refresh-wrapper {
   position: absolute;
   width: 100%;
@@ -460,8 +337,6 @@ ul.hierarchy ul {
   background: rgba(0, 0, 0, 0.61);
   display: none;
 }
-/* line 353, C:\WebServers\home\tandmtracker\www\less\styles.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/WebServers\/home\/tandmtracker\/www\/less\/styles\.less}line{font-family:\00003353}}
 #map #refresh-map {
   position: relative;
   top: 40%;

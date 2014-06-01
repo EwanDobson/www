@@ -56,15 +56,20 @@ $this->breadcrumbs = array(
 
                 <?php echo $form->error($model, 'description'); ?>
             </div>
-        
-            <ul class="users">
+
+        <a href="index.php?r=developer/editproject&project_id=<?= $model->projectId ?>" class="btn btn-primary">Edit project info</a>
+        <span style="font-size: 12px; margin-top: 10px;">(last modified - <?= $model->modified ?>)</span>
+
+        <ul class="users">
                 <?php foreach($user as $user1) {
                     echo "<li class='user'>" . $user1->email . "</li>";
                 } ?>
 
+            <?php if(Yii::app()->user->usergroup == 'admin'): ?>
                 <li class="adduser">
                     <a href="index.php?r=developer/adduser">Add user</a>
                 </li>
+            <?php endif; ?>
             </ul>
             
         
@@ -72,13 +77,6 @@ $this->breadcrumbs = array(
     </div>
 
 	<?php echo $form->errorSummary($model); ?>
-
-
-
-	<div class="row">
-		<?php echo $form->label($model,'modified'); ?>
-		<?php echo '<span>' . $model->modified . '</span>'; ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'status'); ?>
@@ -117,6 +115,20 @@ $(document).ready(function(){
                $("input[name='TblProject["+type+"]']").show();
                $(".save").click(function() {
                    $(selector1).text($("input[name='TblProject["+type+"]']").val());
+                   var project_title = $('#TblProject_title').val();
+                   alert(project_title);
+                   $.ajax({
+                       url: 'index.php?r=developer/',
+                       data: {
+
+                       },
+                       success: function(data){
+                           $("#"+id).html(data);
+                           $(".projectinfo").hide();
+                           $("#"+id).show();
+                       }
+                   });
+
                    $("input[name='TblProject["+type+"]']").hide();
                    $(selector1).show();
                    $(this).hide();

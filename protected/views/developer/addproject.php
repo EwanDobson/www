@@ -34,12 +34,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'modified'); ?>
-		<?php echo $form->textField($model,'modified'); ?>
-		<?php echo $form->error($model,'modified'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'status'); ?>
 		<?php echo $form->textField($model,'status'); ?>
 		<?php echo $form->error($model,'status'); ?>
@@ -54,9 +48,6 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'start'); ?>
         <?php
-            //getdate($model->start);
-            //$model->start = date("Y-m-d",strtotime($model->start ));
-
             echo $form->textField($model,'start', array('class'=>'start_date'));
         ?>
 		<?php echo $form->error($model,'start'); ?>
@@ -65,7 +56,6 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'end'); ?>
         <?php
-            //$model->end = date("d-M-Y",strtotime($model->end ));
             echo $form->textField($model,'end', array('class'=>'end_date'));
         ?>
 		<?php echo $form->error($model,'end'); ?>
