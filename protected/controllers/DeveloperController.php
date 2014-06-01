@@ -33,7 +33,7 @@ class DeveloperController extends Controller {
                 'users'=>array('*'),
             ),
             array('allow', // allow admin user to perform 'admin' AND 'delete' AND 'index' actions
-                'actions'=>array('index','adduser','users', 'calendar', 'userinfo', 'projectinfo', 'createmindmap', 'mindmap', 'addtodo', 'todo', 'checktask', 'addtask', 'archivetask', 'addproject', 'addmindmap', 'refreshmap', 'UserAdded'),
+                'actions'=>array('index','adduser','users', 'calendar', 'userinfo', 'projectinfo', 'editproject', 'saveprojectchanges', 'createmindmap', 'mindmap', 'addtodo', 'todo', 'checktask', 'addtask', 'archivetask', 'addproject', 'addmindmap', 'refreshmap', 'UserAdded'),
                 'users'=>array('@'),
                 'expression'=>'($user->usergroup === "admin")'
             ),
@@ -275,19 +275,40 @@ class DeveloperController extends Controller {
             Yii::app()->end();
         }
         else {
-            if (isset($_POST['Project'])) {
+            if (isset($_POST['TblProject'])) {
 
-                $project->attributes = $_POST['Project'];
+                $project->attributes = $_POST['TblProject'];
                 $asd = $project->validate();
-                //if($asd) {
+                if($asd) {
                     $project->save();
                     $this->redirect("index.php?r=developer/index");
-                //}
+                }
             }
         }
 
         $this->render('addproject', array('model' => $empty_project));
         //$this->render('index');
+    }
+
+    public function actionEditproject($project_id) {
+        $project = tblProject::model()->find('projectId=:projectId', array(':projectId' => $project_id));
+
+        $this->render('editproject', array('model' => $project));
+    }
+
+    public function actionSaveprojectchanges() {
+        $curr_date = date('Y-m-d H:i:s');
+        $project_id = $_POST['id'];
+        $title = $_POST['title'];
+        $description = $_POST['description'];
+        $start = $_POST['start'];
+        $end = $_POST['end'];
+        $status = $_POST['status'];
+
+        $sql = "UPDATE tbl_project SET start = '$start', end = '$end', title = '$title', description = '$description', modified = '$curr_date', status = '$status' WHERE projectId = '$project_id' ;";
+        $connection = Yii::app()->db;
+        $command = $connection->createCommand($sql);
+        $rowCount = $command->execute();
     }
 
     public function actionInfo() {

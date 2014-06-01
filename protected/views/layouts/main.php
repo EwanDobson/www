@@ -55,7 +55,7 @@
 			'items'=>array(
                 array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                 array('label'=>'Projects', 'url'=>array('/developer/index'), 'visible'=>!Yii::app()->user->isGuest),
-                array('label'=>'Add User', 'url'=>array('/developer/adduser'), 'visible' => !Yii::app()->user->isGuest && Yii::app()->user->usergroup == 'admin'),
+                array('label'=>'Register User', 'url'=>array('/developer/adduser'), 'visible' => !Yii::app()->user->isGuest && Yii::app()->user->usergroup == 'admin'),
                 array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
                 //array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
                 array('label'=>'Contact', 'url'=>array('/site/contact')),
